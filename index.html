@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wienbesetzt!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="entrance-overlay" id="entranceBarrier" style="cursor: pointer;">
+        <div class="entrance-popup">
+            <h2>Hello</h2>
+			<p>This interactive map of vienna shows the History of House Occupation in Vienna.<br>
+            <br>
+			House Occupations are political! Activists often use them as a tool to raise awareness for social issues & amplify the voices of the unheard.<br>
+			<br>
+            Please be aware that this is sensible Information for some & use it with care!<br> 
+            <br>
+			Thank you.</p>
+            <br>
+        </div>
+    </div>
+
+
+<div class="ticker-leiste">
+    <div class="ticker-inhalt">
+        Oktober 2026:Budgetstreit: Besetzung an Wiener Kunstuniversität, vienna.at
+
+        April 2026: Gelände in St. Marx bei Großeinsatz von Polizei geräumt - 6 Festnahmen - Umstrittene Event-Arena: Bürgerinitiative will nach Räumung weiterkämpfen.
+        MeinBezirk.at, Standard.at
+
+        März 2025: In Innsbruck wurde eine Wohnung in der Schlachthofgasse besetzt. Die Besetzer wollten damit auf Leerstand und Wohnraummangel aufmerksam machen. ​, VICE, MeinBezirk.at, Heute.at
+        VICE, MeinBezirk.at, Heute.at
+
+        März 2025: In Wien-Mariahilf besetzte eine anonyme Gruppe ein Jahr lang ein Haus in der Gumpendorfer Straße 63e, um gegen hohe Mietpreise und Lebenshaltungskosten zu protestieren. ​, MeinBezirk.at
+
+        April 2024: Rund 20 Aktivisten besetzten ein Haus in der Harmoniegasse 10 im 9. Wiener Bezirk, um auf Leerstand und steigende Mietpreise hinzuweisen. ​
+        FALTER, Heute.at
+
+        Mai 2022: In der Stadt Salzburg wurde eine Immobilie von Ex-Skistar Marcel Hirscher von Aktivisten besetzt, um auf das Thema Leerstand aufmerksam zu machen. ​, Salzburger Nachrichten
+        Salzburger Nachrichten</div>
+
+</div>
+
+
+
+
+
+
+
+<div id="top-bar">
+		<button id="circle2">Info</button>
+		<button id="circle3">Down</button>
+		<button id="circle4">List</button>
+    	<button id="circle">+</button>
+</div>
+
+
+<div id="info-popup" class="info-popup" style="display: none;">
+    <div class="info-content">
+        <strong>What is this?</strong>
+        <p>This is an interactive map, showing the History of House Occupation in Vienna.</br>
+        You can click on the blue markers to learn more about each location and the Story of the Building.</br>
+		All Sources of the background research and the images are listed in the popup of each marker.</p>
+        Please be aware that this is an ongoing research Project and that the list will always be incomplete. <br>
+        House Occupations have a long & not always well documented History in Vienna. There are many Buildings missing in this Map. <br>
+		<p> I Apologize if mistakes in the Research are Made and ask for corrections anytime!</br>
+		Also if you have more Information or Questions you can contact me via the small + in the top right corner of the Website.</p>
+        <p>This Map startet as a project in the Framework of a Architecture mapping seminar at the University of fine Arts Vienna.<br>
+        It was html coded & the code is Open Source. Its acessible via Github.</p>
+		<img src="Grafiken/copyright.gif" alt="Contact GIF" class="contact-gif">
+		<p>*2025. Jakob Noah Sycha. </p>
+    </div>
+</div>
+
+<div id="images-list-popup" class="info-popup" style="display: none;">
+    <div class="info-content">
+        <strong>List of House´s</strong>
+        <ul>
+            <li data-image-id="1" class="clickable-location">Harmoniegasse 10</li>
+            <li data-image-id="2" class="clickable-location">Spitalgasse 11</li>
+            <li data-image-id="3" class="clickable-location">Breite Gasse 15</li>
+            <li data-image-id="4" class="clickable-location">Burggasse</li>
+            <li data-image-id="5" class="clickable-location">Eichstraße 2</li>
+            <li data-image-id="6" class="clickable-location">Eichstraße 9</li>
+            <li data-image-id="7" class="clickable-location">Wielandgasse 2/4 "EKH"</li>
+            <li data-image-id="8" class="clickable-location">Gumpendorfer Straße 63E</li>
+            <li data-image-id="9" class="clickable-location">Hetzgasse 8</li>
+            <li data-image-id="10" class="clickable-location">Mariannengasse 16</li>
+            <li data-image-id="11" class="clickable-location">Mühlfeldgasse 12 "Pizzaria Anarchia"</li>
+            <li data-image-id="12" class="clickable-location">Lindengasse 60-62</li>
+            <li data-image-id="13" class="clickable-location">Joseph-Lister-Gasse 92</li>
+            <li data-image-id="14" class="clickable-location">Westbahnstraße 13</li>
+            <li data-image-id="15" class="clickable-location">Lorenz-Mandl-Gasse 16/1/2C</li>
+            <li data-image-id="16" class="clickable-location">Praterstraße 10</li>
+            <li data-image-id="17" class="clickable-location">Hohe Warte 1</li>
+            <li data-image-id="18" class="clickable-location">Humboldtgasse 32</li>
+            <li data-image-id="19" class="clickable-location">Rathausplatz 3</li>
+            <li data-image-id="20" class="clickable-location">Taborstraße 18</li>
+            <li data-image-id="21" class="clickable-location">Triesterstraße 114</li>
+            <li data-image-id="22" class="clickable-location">Johnstraße 45</li>
+            <li data-image-id="23" class="clickable-location">Taborstraße 23</li>
+            <li data-image-id="24" class="clickable-location">Linke Wienzeile 102</li>
+            <li data-image-id="25" class="clickable-location">Stiftgasse 8</li>
+            <li data-image-id="26" class="clickable-location">Gottschalkgasse 2 "die erste"</li>
+            <li data-image-id="27" class="clickable-location">Döblerhofstraße 13 "Arena"</li>
+            <li data-image-id="28" class="clickable-location">Margaretenstraße 99</li>
+            <li data-image-id="29" class="clickable-location">Spitalgasse 2</li>
+            <li data-image-id="30" class="clickable-location">Judenplatz 1&2</li>
+            <li data-image-id="31" class="clickable-location">Gassergasse "GaGa"</li>
+            <li data-image-id="32" class="clickable-location">Aegidigasse 13 & Spalowskygasse 3</li>
+	        <li data-image-id="33" class="clickable-location">Maria-Jacobi-Gasse "St.Marx"</li>
+            <li data-image-id="34" class="clickable-location">Schillerplatz 3</li>
+
+        </ul>
+    </div>
+</div>
+
+<div id="help-popup" class="info-popup" style="display: none;">
+    <div class="info-content">
+        <strong>Downloads</strong>
+        <p>As housing issues become increasingly urgent for many people in Vienna as well, political action and collective organizing are essential parts of the ongoing debate about how we want to live together in the future. </p>
+        <br>There are political groups in Vienna working to help the people who are struggeling with these issues!<br>
+        <a href="PDF´s/Selbstverteidigung-gegen-den-Mietenwahnsinn.pdf" target="_blank">
+            <img src="Grafiken/download.gif" alt="Download Guide" class="help-gif">
+        </a>
+        <p>Click the gif to download the help guide by "en commun - Zwangsräumungen verhindern!".<br>
+        The Guide includes a List of Initiatives that you can contact to get help.</p>
+    </div>
+</div>
+
+<div id="contact-popup" class="info-popup" style="display: none;">
+    <div class="info-content">
+        <strong>Contact</strong>
+        <p>Do you have information about house occupations in Vienna?</p>
+        <a href="mailto:jakobsycha@gmail.com">
+            <img src="Grafiken/email.gif" alt="Contact GIF" class="contact-gif">
+        </a>
+        <p>Click the gif to send an email</p>
+    </div>
+</div>
+
+
+
+<div id="container">
+<object id="svgObject" type="image/svg+xml" data="Wienswzpln.svg"></object>
+
+
+       
+
+//1
+<img src="Grafiken/Harmoniegasse10.png" id="bild1" class="custom-image"/>
+        	<div id="popup1" class="popup" style="display: none;">
+            		<strong>Harmoniegasse 10</strong>
+            		<strong>"Protest gegen Leerstand von Wohnungen"</strong><br>
+				Besetzt im April 2024, genaue Daten nicht bekannt.<br>
+				Räumung am 1.Mai 2024 
+       			<br>
+				<br>
+				<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            	<a href="javascript:void(0);" class="quellenLink" data-id="1">Sources</a> |
+            	<a href="javascript:void(0);" class="imagesLink" data-id="1">Images</a>
+            </div>
+
+        	<div id="popupQuellen1" class="popup-detail" style="display: none;">
+            	<div><a href="https://www.derstandard.at/story/3000000217009/in-wien-wird-ein-fast-leeres-haus-in-bester-lage-besetzt" target="_blank">https://www.derstandard.at/story/3000000217009/in-wien-wird-ein-fast-leeres-haus-in-bester-lage-besetzt</a></div>
+                <div><a href="https://www.meinbezirk.at/alsergrund/c-politik/eine-alsergrunder-immobilie-als-politischer-zankapfel_a6350684" target="_blank">https://www.meinbezirk.at/alsergrund/c-politik/eine-alsergrunder-immobilie-als-politischer-zankapfel_a6350684</a></div>
+        	</div>
+
+            <div id="popupImages1" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Harmoniegasse 10 (2).png" alt="Harmoniegasse 10">
+            </div>
+
+            <div id="popupImages1-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Harmoniegasse 10.png" alt="Harmoniegasse 10 Second Image">
+            </div>
+
+            <div id="popupKorrektur1" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+
+
+
+//2
+<img src="Grafiken/Spitalgasse11.png" id="bild2" class="custom-image"/>
+		<div id="popup2" class="popup" style="display: none;">
+            		<strong>Spitalgasse 11</strong>
+            		<strong>"Queerfeministische Raumaneignung"</strong> <br>
+					"Überteuerte Mieten machen das Leben für die meisten Menschen zu einem täglichen Kampf.<br> 
+					Gleichzeitig stehen unzählige Häuser in Wien leer."<br>
+					<br>
+				Besetzt Anfang 2008, genauere Daten nicht bekannt. <br>
+				Räumung am 14.04.2008
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="2">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="2">Images</a>
+            	</div>
+
+        	<div id="popupQuellen2" class="popup-detail" style="display: none;">
+            	<div><a href="https://wiev1.orf.at/stories/270566" target="_blank">https://wiev1.orf.at/stories/270566</a></div>
+                </div>
+
+            <div id="popupImages2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/wien spitalgasse 11 2008 4.jpg" alt="Spitalgasse 11">
+            </div>
+
+            <div id="popupImages2-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/wien spitalgasse 11 2008 5.jpg" alt="Spitalgasse 11">
+            </div>
+
+            <div id="popupImages2-3" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/wien spitalgasse 11 2008 6.jpg" alt="Spitalgasse 11">
+            </div>
+
+
+            <div id="popupKorrektur2" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+
+
+//3
+<img src="Grafiken/breitegasse15.png" id="bild3" class="custom-image"/>
+		<div id="popup3" class="popup" style="display: none;">
+            		<strong>Breite Gasse 15</strong>
+            		<strong>Protest gegen Erhoehung der <br> Richtwertmiete & die Gaskonferenz</strong><br>
+				Besetzt am 28.März 2023<br>
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="3">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="3">Images</a>
+            	</div>
+
+        	<div id="popupQuellen3" class="popup-detail" style="display: none;">
+            	<div><a href="https://www.meinbezirk.at/wien/c-lokales/aktivisten-besetzen-biedermeierhaus-am-neubau_a5954650" target="_blank">https://www.meinbezirk.at/wien/c-lokales/aktivisten-besetzen-biedermeierhaus-am-neubau_a5954650</a></div>
+        	</div>
+
+            <div id="popupImages3" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/breite Gasse 15.png" alt="Breite Gasse 15">
+            </div>
+			
+            <div id="popupKorrektur3" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+
+
+//4
+<img src="Grafiken/Burggasse2.png" id="bild4" class="custom-image"/>
+		<div id="popup4" class="popup" style="display: none;">
+            		<strong>Burggasse 2</strong>
+            		<strong>Protest gegen Leerstand & Wohnungsnot</strong><br>
+				mehrfach besetzt - 2005 & 2010. <br>
+				ehemals Sitz der niederösterreichischen Gebietskrankenkasse <br>
+				<br>
+
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="4">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="4">Images</a>
+            </div>
+
+        	<div id="popupQuellen4" class="popup-detail" style="display: none;">
+            	<div><a href="https://www.vienna.at/neubau-hausbesetzung-in-der-burggasse-2-beendet/1681861" target="_blank">https://www.vienna.at/neubau-hausbesetzung-in-der-burggasse-2-beendet/1681861</a></div>
+				<div><a href="https://www.anarchismus.at/bilder-hausbesetzungen/hausbesetzungen-oesterreich/category/10-hausbesetzungen-oesterreich" target="_blank">https://www.anarchismus.at/bilder-hausbesetzungen/hausbesetzungen-oesterreich/category/10-hausbesetzungen-oesterreich</a></div>
+			</div>
+
+            <div id="popupImages4" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Burggasse 2.jpg" alt="Burggasse">
+            </div>
+
+			<div id="popupImages4-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Burggasse 2 2005.jpg" alt="Burggasse">
+            </div>
+
+            <div id="popupKorrektur4" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+
+
+//5
+	<img src="Grafiken/Eichenstrasse2.png" id="bild5" class="custom-image"/>
+		<div id="popup5" class="popup" style="display: none;">
+            		<strong>Eichstra?e 9</strong>
+            		<strong>Protest gegen Leerstand & Wohnungsnot</strong><br>
+                    "schmeißt ihr uns aus einem raus, <br> gehen wir ins nächste Haus"<br>
+					zweite"Sommer Sonne Squatting"-Aktion 2010<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="5">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="5">Images</a>
+            	</div>
+
+        	<div id="popupQuellen5" class="popup-detail" style="display: none;">
+            	<div><a href="PDF´s/Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf" target="_blank">Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf</a></div>
+        	</div>
+
+            <div id="popupImages5" class="popup-images" style="display: none;">
+                <img src="Grafiken/Eichstraße 2.png" alt="Eichstraße 2">
+            </div>
+
+            <div id="popupKorrektur5" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+
+//6
+	<img src="Grafiken/Eichenstrasse2.png" id="bild6" class="custom-image"/>
+		<div id="popup6" class="popup" style="display: none;">
+            	<strong>Eichenstra?e 9</strong>
+            	<strong>"6.7 - Solidaritaet gegen Repression"</strong><br>
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="6">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="6">Images</a>
+            	</div>
+
+        	<div id="popupQuellen6" class="popup-detail" style="display: none;">
+                <div><a href="PDF´s/Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf" target="_blank">Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf</a></div>	
+                <div><a href="https://www.derstandard.at/1277337970369/besetzung-haus-in-der-eichenstrasse-9-geraeumt   " target="_blank">https://www.derstandard.at/1277337970369/besetzung-haus-in-der-eichenstrasse-9-geraeumt</a></div>
+            </div>
+
+            <div id="popupImages6" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Eichenstraße 9.jpg" alt="Eichstraße 9">
+            </div>
+			
+            <div id="popupKorrektur6" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//7
+	<img src="Grafiken/EKH.png" id="bild7" class="custom-image"/>
+		<div id="popup7" class="popup" style="display: none;">
+            	<strong>Wielandgasse 2/4<br>"Ernst-Kirchweger-Haus"</strong>
+            	<strong>Gruendung eines autonomen Zentrums </strong><br>
+                1990 wurde das damals weitgehend schon leer stehende Haus von AktivistInnen<br> 
+                aus dem Umfeld des 1988 geräumten und abgerissenen autonomen Zentrums<br> 
+                Aegidigasse/Spalowskygasse und der kurdisch-türkischen ATIGF <br>
+                (Föderation der Arbeiter und Studenten aus der Türkei in Österreich) besetzt<br> 
+                und das hier etablierte autonome, antifaschistische <br>
+                Zentrum Ernst-Kirchweger-Haus genannt.
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="7">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="7">Images</a>
+            	</div>
+
+        	<div id="popupQuellen7" class="popup-detail" style="display: none;">
+                <div><a href="https://www.geschichtewiki.wien.gv.at/Ernst-Kirchweger-Haus" target="_blank">https://www.geschichtewiki.wien.gv.at/Ernst-Kirchweger-Haus</a></div>	
+            </div>
+
+            <div id="popupImages7" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Ernst-Kirchweger-Haus.jpg" alt="Wielandgasse 2/4">
+            </div>
+			
+            <div id="popupKorrektur7" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//8
+	<img src="Grafiken/Gumpendorferstraße63e.png" id="bild8" class="custom-image"/>
+		<div id="popup8" class="popup" style="display: none;">
+            	<strong>Gumpendorfer Stra?e 63E</strong>
+            	<strong>Protest gegen zu hohe Mietpreise</strong><br>
+                von Anfang 2024 bis Anfang 2025
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="8">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="8">Images</a>
+            	</div>
+
+        	<div id="popupQuellen8" class="popup-detail" style="display: none;">
+                <div><a href="https://emrawi.org/?Hocken-oder-Sterben-3609" target="_blank">https://emrawi.org/?Hocken-oder-Sterben-3609</a></div>	
+            </div>
+
+            <div id="popupImages8" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Gumpendorferstraße.png" alt="Gumpendorfer Straße 63E">
+            </div>
+
+            <div id="popupImages8-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/gumpendorferstraße 63e.2.png" alt="Gumpendorfer Straße 63E">
+            </div>
+			
+            <div id="popupKorrektur8" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//9
+	<img src="Grafiken/Hetzgasse8.png" id="bild9" class="custom-image"/>
+		<div id="popup9" class="popup" style="display: none;">
+            	<strong>Hetzgasse 8</strong>
+            	<strong>Forderung nach mehr Raeumen fuer marginalisierte Gruppen</strong><br>
+                besetzt am 25. September 2020.<br>
+                "Wir wollen an diesem Ort Raum für Begegnungen schaffen", <br>
+                heißt es in einem Flugzettel, der im Gegenzug in der Kiste nach unten geschickt wurde.<br>
+                 "Ein Platz, an dem kollektiv und basisdemokratisch Projekte <br>
+                 geschaffen werden können, welche die politische Bildung, <br>
+                 Jugendarbeit und Kulturarbeit voranbringen, ohne kommerzielle Barrieren <br>
+                 überwinden zu müssen." Nachbarn und Gleichgesinnte werden <br>
+                 eingeladen, das Projekt mitzugestalten.
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="9">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="9">Images</a>
+            	</div>
+
+        	<div id="popupQuellen9" class="popup-detail" style="display: none;">
+                <div><a href="https://www.derstandard.at/story/2000120278504/hetzgasse-8-in-wien-landstrasse-von-aktivisten-besetzt" target="_blank">https://www.derstandard.at/story/2000120278504/hetzgasse-8-in-wien-landstrasse-von-aktivisten-besetzt</a></div>	
+            </div>
+
+            <div id="popupImages9" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/hetzgasse8.jpg" alt="Hetzgasse 8">
+            </div>
+
+            <div id="popupImages9-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/hetzgasse8.2.jpg" alt="Hetzgasse 8">
+            </div>
+
+            <div id="popupImages9-3" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/hetzgasse8.3.jpg" alt="Hetzgasse 8">
+            </div>
+			
+            <div id="popupKorrektur9" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//10
+	<img src="Grafiken/Mariannengasse16.png" id="bild10" class="custom-image"/>
+		<div id="popup10" class="popup" style="display: none;">
+            	<strong>Mariannengasse 16</strong>
+            	<strong>Aufruf zur Solidaritaet</strong><br>
+                besetzt am 18.03.2022
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="10">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="10">Images</a>
+            	</div>
+
+        	<div id="popupQuellen10" class="popup-detail" style="display: none;">
+                <div><a href="https://transversal.at/blog/en-commun-solidarisch-durch-die-krisen" target="_blank">https://transversal.at/blog/en-commun-solidarisch-durch-die-krisen</a></div>	
+            </div>
+
+            <div id="popupImages10" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Mariannengasse16-20.bmp" alt="Mariannengasse 16">
+            </div>
+
+            <div id="popupImages10-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Mariannengasse 16-20.2.bmp" alt="Mariannengasse 16">
+            </div>
+
+            <div id="popupImages10-3" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Mariannengasse 16-20.3.bmp" alt="Mariannengasse 16">
+            </div>
+			
+            <div id="popupKorrektur10" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+
+//11
+	<img src="Grafiken/Mühlfeldgasse13.png" id="bild11" class="custom-image"/>
+		<div id="popup11" class="popup" style="display: none;">
+            	<strong>Muehlfeldgasse 12<br>"Pizzaria Anarchia"</strong>
+            	<strong>Aufruf zur Solidaritaet</strong><br>
+                2011-2014 - Solidarisierung einiger Anwohner*innen <br>
+                nach Schickane/"Bestandsfreimachung" der Besitzer*innen (Castella GMBH)<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="11">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="11">Images</a>
+            	</div>
+
+        	<div id="popupQuellen11" class="popup-detail" style="display: none;">
+                <div><a href="https://www.derstandard.at/story/2000003586717/wien-vorbereitungen-zur-raeumung-der-pizzeria-anarchia-begonnen" target="_blank">https://www.derstandard.at/story/2000003586717/wien-vorbereitungen-zur-raeumung-der-pizzeria-anarchia-begonnen</a></div>	
+            </div>
+
+            <div id="popupImages11" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Mühlfeldgasse 12.3.jpg" alt="Mariannengasse 16">
+            </div>
+
+            <div id="popupImages11-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Mühlfeldgasse 12.2.jpg" alt="Mariannengasse 16">
+            </div>
+
+            <div id="popupImages11-3" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Mühlfeldgasse 12.jpg" alt="Mariannengasse 16">
+            </div>  
+			
+            <div id="popupKorrektur11" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+
+//12
+	<img src="Grafiken/Lindengasse60.png" id="bild12" class="custom-image"/>
+		<div id="popup12" class="popup" style="display: none;">
+            	<strong>Lindengasse 60-62 "Epizentrum"</strong>
+            	<strong>"Die Haeuser denen, die drin wohnen."</strong><br>
+                besetzt im März 2018<br>
+                Forderung nach mehr Raum für Wohn- & Kulturzentren <br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="12">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="12">Images</a>
+            	</div>
+
+        	<div id="popupQuellen12" class="popup-detail" style="display: none;">
+                <div><a href="https://www.diepresse.com/706823/wien-neubau-polizei-raeumt-besetztes-haus" target="_blank">https://www.diepresse.com/706823/wien-neubau-polizei-raeumt-besetztes-haus</a></div>	
+            </div>
+
+            <div id="popupImages12" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Lindengasse 60-62.webp" alt="Lindengasse 60-62">
+            </div>
+			
+            <div id="popupKorrektur12" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//13
+	<img src="Grafiken/Joseph-lister-gasse92.png" id="bild13" class="custom-image"/>
+		<div id="popup13" class="popup" style="display: none;">
+            	<strong>Joseph-Lister-Gasse 92</strong>
+            	<strong>"Keep warm - Burn out - the center"</strong><br>
+                besetzt 13.November 2015<br>
+                Protest gegen Abriss der ehemaligen Franziska Fast Anlage (Geflüchteten Unterkunft) <br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="13">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="13">Images</a>
+            	</div>
+
+        	<div id="popupQuellen13" class="popup-detail" style="display: none;">
+                <div><a href="https://www.youtube.com/watch?v=-lVUWQyDEUk" target="_blank">https://www.youtube.com/watch?v=-lVUWQyDEUk</a></div>	
+                <div><a href="https://media04.meinbezirk.at/article/2020/07/10/8/24032268_XXL.jpg" target="_blank">https://media04.meinbezirk.at/article/2020/07/10/8/24032268_XXL.jpg</a></div>	
+            </div>
+
+            <div id="popupImages13" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Joseph-Lister-Gasse 92.png" alt="Joseph-Lister-Gasse 92">
+            </div>
+
+            <div id="popupImages13-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Hörndlwald.jpg" alt="Hörndlwald">
+            </div>
+			
+            <div id="popupKorrektur13" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//14
+	<img src="Grafiken/Westbahnstraße13.png" id="bild14" class="custom-image"/>
+		<div id="popup14" class="popup" style="display: none;">
+            	<strong>Westbahnstraße 13<br> "Wilde 13"</strong>
+            	<strong>Forderung nach mehr alternativen Freiraum</strong><br>
+                "Der Bedarf nach Freiraum ist nach wie vor da"<br>
+                Nachfolgebesetzung der Lindengasse 60-62 <br>
+                besetzt am 11.11.2011<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="13">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="13">Images</a>
+            	</div>
+
+        	<div id="popupQuellen14" class="popup-detail" style="display: none;">
+                <div><a href="https://www.vienna.at/wieder-eine-hausbesetzung-in-wien-neubau/3087555" target="_blank">https://www.vienna.at/wieder-eine-hausbesetzung-in-wien-neubau/3087555</a></div>	
+                <div><a href="https://www.derstandard.at/story/1319182833233/westbahnstrasse-hausbesetzung-oder-hausfriedensbruch-in-wien-neubau" target="_blank">https://www.derstandard.at/story/1319182833233/westbahnstrasse-hausbesetzung-oder-hausfriedensbruch-in-wien-neubau</a></div>
+            </div>
+
+            <div id="popupImages14" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Westbahnstraße 13.jpg" alt="Westbahnstraße 13">
+            </div>
+			
+            <div id="popupKorrektur14" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//15
+	<img src="Grafiken/Lobmeyerhof.png" id="bild15" class="custom-image"/>
+		<div id="popup15" class="popup" style="display: none;">
+            	<strong>Lorenz-Mandl-Gasse 16/1/2C</strong>
+            	<strong>Forderung nach alternativen Freiraeumen & Protest gegen steigende Mieten</strong><br>
+                "Lohbachhof"<br>
+                besetzt 2011<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="15">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="15">Images</a>
+            	</div>
+
+        	<div id="popupQuellen15" class="popup-detail" style="display: none;">
+                <div><a href="https://www.derstandard.at/story/1310511507907/aufgeloeste-hausbesetzung-unsanfte-begleitmusik-einer-renovierung" target="_blank">https://www.derstandard.at/story/1310511507907/aufgeloeste-hausbesetzung-unsanfte-begleitmusik-einer-renovierung</a></div>	
+                 </div>
+
+            <div id="popupImages15" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Lobmeyerhof.jpg" alt="Lobmeyerhof">
+            </div>
+
+            <div id="popupImages15-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Lobmeyerhof.2.jpg" alt="Lobmeyerhof">
+            </div>
+			
+			
+            <div id="popupKorrektur15" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//16
+	<img src="Grafiken/Praterstraße10.png" id="bild16" class="custom-image"/>
+		<div id="popup16" class="popup" style="display: none;">
+            	<strong>Praterstra?e 10</strong>
+            	<strong>"Haus Projekt - jetzt selbstverwaltet""</strong><br>
+                besetzt 25.03.2010<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="16">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="16">Images</a>
+            	</div>
+
+        	<div id="popupQuellen16" class="popup-detail" style="display: none;">
+                <div><a href="https://www.oe24.at/oesterreich/chronik/initiative-besetzt-gebaeude-in-wien/790580" target="_blank">https://www.oe24.at/oesterreich/chronik/initiative-besetzt-gebaeude-in-wien/790580</a></div>	
+                 </div>
+
+            <div id="popupImages16" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Praterstraße 10.png" alt="Lobmeyerhof">
+            </div>
+			
+            <div id="popupKorrektur16" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//17    
+	<img src="Grafiken/leer.png" id="bild17" class="custom-image"/>
+		<div id="popup17" class="popup" style="display: none;">
+            	<strong>Hohe Warte 1</strong>
+            	<strong>"Suche nach alternativen Freiräumen</strong><br>
+                Ziel war die "Errichtung einer offenen Werkstatt, einer Bibliothek sowie Theaterräume" im ehemaligen Kinderheim<br>
+                Juli 2008<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="17">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="17">Images</a>
+            	</div>
+
+        	<div id="popupQuellen17" class="popup-detail" style="display: none;">
+                <div><a href="https://www.derstandard.at/story/3412841/hausbesetzung-auf-der-hohen-warte-friedlich-beendet?utm_source=chatgpt.com" target="_blank">https://www.derstandard.at/story/3412841/hausbesetzung-auf-der-hohen-warte-friedlich-beendet?utm_source=chatgpt.com</a></div>	
+                 </div>
+
+            <div id="popupImages17" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Hohe Warte 1.jpeg" alt="Hohe Warte 1">
+            </div>
+			
+            <div id="popupKorrektur17" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//18    
+	<img src="Grafiken/leer.png" id="bild18" class="custom-image"/>
+		<div id="popup18" class="popup" style="display: none;">
+            	<strong>Humboldtgasse 32</strong>
+            	<strong>"Sommer, Sonne, Squattingaction"</strong><br>
+                besetzt am 19.August 2010<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="18">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="18">Images</a>
+            </div>
+
+        	<div id="popupQuellen18" class="popup-detail" style="display: none;">
+                <div><a href="PDF´s/Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf" target="_blank">Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen</a></div>	
+                <div><a href="https://cba.media/74811?utm_source=chatgpt.com" target="_blank">https://cba.media/74811?utm_source=chatgpt.com</a></div>
+            </div>
+			
+            <div id="popupKorrektur18" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//19    
+	<img src="Grafiken/Rathausplatz3.png" id="bild19" class="custom-image"/>
+		<div id="popup19" class="popup" style="display: none;">
+            	<strong>Rathausplatz 3</strong>
+            	<strong>"Refugees Welcome"</strong><br>
+                besetzt am 26.04.2021 & am selben Tag geräumt<br>
+                Protest gegen die Asylpolitik Österreichs & die Situation am Wohnungsmarkt<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="19">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="19">Images</a>
+            	</div>
+
+        	<div id="popupQuellen19" class="popup-detail" style="display: none;">
+                <div><a href="https://www.derstandard.at/story/2000126167029/aktivisten-besetzen-haus-am-wiener-rathausplatz" target="_blank">https://www.derstandard.at/story/2000126167029/aktivisten-besetzen-haus-am-wiener-rathausplatz</a></div>	
+                 </div>
+
+            <div id="popupImages19" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Rathausplatz3.jpg" alt="Rathausplatz 3">
+            </div>
+			
+            <div id="popupKorrektur19" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//20    
+	<img src="Grafiken/Taborstraße18.png" id="bild20" class="custom-image"/>
+		<div id="popup20" class="popup" style="display: none;">
+            	<strong> Taborstra?e 18</strong>
+            	<strong>"85 Wohnungen zu besetzen! <br> Wohnen ist Menschenrecht"</strong><br>
+                Protest gegen die Schickanen der Besitzer*innen & den schlechten Zustand des Hauses<br>
+                Aufruf zur Besetzung durch ein Banner<br>
+                Keine tatsächliche Besetzung erfolgt.<br>
+                Dezember 2021<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="20">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="20">Images</a>
+            	</div>
+
+        	<div id="popupQuellen20" class="popup-detail" style="display: none;">
+                <div><a href="https://www.w24.at/News/2021/12/Bezirksflash-Konflikt-um-Taborstrasse-18 " target="_blank">https://www.w24.at/News/2021/12/Bezirksflash-Konflikt-um-Taborstrasse-18</a></div>	
+                 </div>
+
+            <div id="popupImages20" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Taborstraße 18.jpg" alt="Taborstraße 18">
+            </div>
+			
+            <div id="popupKorrektur20" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//21        
+	<img src="Grafiken/Triesterstraße114.png" id="bild21" class="custom-image"/>
+		<div id="popup21" class="popup" style="display: none;">
+            	<strong>Triesterstra?e 114</strong>
+            	<strong>"Luxus fuer alle!"</strong><br>
+                ehemaligen Schule<br> 
+                Gründung eines selbstverwalteten Wohn-, Arbeits- und Kreativraums<br>
+                besetzt im Oktober 2009<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="21">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="21">Images</a>
+            	</div>
+
+        	<div id="popupQuellen21" class="popup-detail" style="display: none;">
+                <div><a href="https://www.diepresse.com/514045/wien-hausbesetzung-20-in-einer-alten-schule" target="_blank">https://www.diepresse.com/514045/wien-hausbesetzung-20-in-einer-alten-schule</a></div>	
+                <div><a href="https://www.hierner.info" target="_blank">https://www.hierner.info</a></div>	
+                </div>
+
+            <div id="popupImages21" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/triesterstraße 114.jpg" alt="Triesterstraße 114">
+            </div>
+
+            <div id="popupImages21-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/triesterstraße 114.2.jpg" alt="Triesterstraße 114">
+            </div>
+			
+            <div id="popupKorrektur21" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//22        
+	<img src="Grafiken/Johnstraße45.png" id="bild22" class="custom-image"/>
+		<div id="popup22" class="popup" style="display: none;">
+            	<strong>Johnstra?e 45<br>"Pankahyttn"</strong>
+            	<strong>"Kampf dem Faschismus!"</strong><br>
+                selbstorganisiertes, unkommerzielles, emanzipatorisches Wohn-, Kultur-, und Sozialprojekt<br> 
+                bezogen am 5.12.2007, genaue Umstände unnbekannt<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="22">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="22">Images</a>
+            	</div>
+
+        	<div id="popupQuellen22" class="popup-detail" style="display: none;">
+                <div><a href="PDF´s/Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf" target="_blank">Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen</a></div>	
+                <div><a href="https://igkulturwien.net/mitglieder/3-mitglieder-3-fragen/initiative-pankahyttn" target="_blank">https://igkulturwien.net/mitglieder/3-mitglieder-3-fragen/initiative-pankahyttn</a></div>
+                <div><a href="https://www.meinbezirk.at/rudolfsheim-fuenfhaus/c-lokales/die-pankahyttn-hat-alles-fuer-alle_a5004061#gallery=null" target="_blank">https://www.meinbezirk.at/rudolfsheim-fuenfhaus/c-lokales/die-pankahyttn-hat-alles-fuer-alle_a5004061#gallery=null</a></div>
+            </div>
+            
+            <div id="popupImages22" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Johnstraße 45.jpg" alt="Johnstraße 45">
+            </div>
+
+            <div id="popupImages22-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Johnstraße 45.2.jpg" alt="Johnstraße 45">
+            </div>
+			
+            <div id="popupKorrektur22" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//23        
+	<img src="Grafiken/Taborstraße18.png" id="bild23" class="custom-image"/>
+		<div id="popup23" class="popup" style="display: none;">
+            	<strong>Taborstra?e 23</strong>
+            	<strong>"Haus für haftentlassene Frauen"</strong><br>
+                am 8. Mai 1982 von 8 Personen besetzt<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="23">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="23">Images</a>
+            	</div>
+
+        	<div id="popupQuellen23" class="popup-detail" style="display: none;">
+                <div><a href="https://www.falter.at/zeitung/20030312/vor-20-jahren-im-falter" target="_blank">https://www.falter.at/zeitung/20030312/vor-20-jahren-im-falter</a></div>	
+            </div>
+			
+            <div id="popupKorrektur23" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//24            
+	<img src="Grafiken/LinkeWienzeile102.png" id="bild24" class="custom-image"/>
+		<div id="popup24" class="popup" style="display: none;">
+            	<strong>Linke Wienzeile 102<br>"Rosa Lila Villa"</strong>
+            	<strong>"DO IT!"</strong><br>
+                "Die Türkis Rosa Lila Villa ist ein politisches Bestärkungsprojekt von und für Lesben, Schwule, bisexuelle, trans, inter* und nicht-binäre Menschen, das in ihrer Art einmalig ist. Denn alle queeren Identitäten haben bei uns Platz!
+Als es 1982 als Hausprojekt startete, war den damaligen Bewohner*innen klar, dass es nicht nur um Wohnraum, sondern auch um radikale, emanzipatorische Politik geht!"<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="24">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="24">Images</a>
+            	</div>
+
+        	<div id="popupQuellen24" class="popup-detail" style="display: none;">
+                <div><a href="https://dievilla.at/ueber-die-villa/" target="_blank">https://dievilla.at/ueber-die-villa/</a></div>	
+               </div>
+            
+            <div id="popupImages24" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Linke Wienzeile 102.jpg" alt="Linke Wienzeile 102">
+            </div>
+
+            <div id="popupImages24-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Linke Wienzeile 102.2.jpg" alt="Linke Wienzeile 102">
+            </div>
+			
+            <div id="popupKorrektur24" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//25            
+	<img src="Grafiken/Stiftgasse8.png" id="bild25" class="custom-image"/>
+		<div id="popup25" class="popup" style="display: none;">
+            	<strong>Stiftgasse 8 <br>"Ammerlinghaus"</strong>
+            	<strong>"Forderung nach Nachbarschaftszentrum"</strong><br>
+                "In der Gegend sollte ein Nachbarschaftszentrum entstehen, ein konsumfreier Ort kultureller Selbstbestimmung. Man stellte sich einen Raum des Miteinanders vor, an dem Menschen aller Altersklassen mit unterschiedlichen sozialen, nationalen und kulturellen Hintergründen sich begegnen konnten." <br>
+                1975 besetzt<br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="25">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="25">Images</a>
+            	</div>
+
+        	<div id="popupQuellen25" class="popup-detail" style="display: none;">
+                <div><a href="PDF´s/Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf" target="_blank">Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen</a></div>	
+                <div><a href="https://magazin.wienmuseum.at/50-jahre-besetzung-amerlinghaus" target="_blank">https://magazin.wienmuseum.at/50-jahre-besetzung-amerlinghaus</a></div>
+            </div>
+            
+            <div id="popupImages25" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Stiftgasse 8.jpg" alt="Ammerlinghaus">
+            </div>
+
+            <div id="popupImages25-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Stiftgasse 8.2.jpg" alt="Ammerlinghaus">
+            </div>
+
+            <div id="popupImages25-3" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Stiftgasse 8.3.jpg" alt="Ammerlinghaus">
+            </div>
+
+            <div id="popupImages25-4" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Stiftgasse 8.4.jpg" alt="Ammerlinghaus">
+            </div>
+			
+            <div id="popupKorrektur25" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//26            
+	<img src="Grafiken/leer.png" id="bild26" class="custom-image"/>
+		<div id="popup26" class="popup" style="display: none;">
+            	<strong>Gottschalkgasse 2<br>"die erste nachweisbare Besetzung"</strong>
+            	<strong>"Errichtung eines selbstverwalteten Jugendzentrums"</strong><br>
+                nach Dieter Schrage (2001): erste nachweisbare Besetzung in Wien am 9.2.1975 durch ca. 100 Jugendliche<br> 
+                <br>
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="26">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="26">Images</a>
+            	</div>
+
+        	<div id="popupQuellen26" class="popup-detail" style="display: none;">
+                <div><a href="PDF´s/Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf" target="_blank">Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen</a></div>	
+                <div><a href="https://thegap.at/als-die-stadt-noch-keine-immobilie-war/" target="_blank">https://thegap.at/als-die-stadt-noch-keine-immobilie-war/</a></div>    
+            </div>
+			
+            <div id="popupKorrektur26" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//27            
+	<img src="Grafiken/Döblerhofstraße13.png" id="bild27" class="custom-image"/>
+		<div id="popup27" class="popup" style="display: none;">
+            	<strong>Doeblerhofstraße 13<br>"Arena"</strong>
+                <strong>Protest gegen Abriss & Forderung nach Kulturzentrum</strong><br> 
+                1976 <br>
+                "Die BesetzerInnen – Intellektuelle, KünstlerInnen und Jugendliche – forderten die Gemeinde auf, die Abrisspläne aufzugeben und hier ein ganzjähriges, selbstverwaltetes Kulturzentrum einzurichten. Gleichzeitig organisierten sie auf dem 70.000 m2 großen Areal eine utopische Stadt in der Stadt, in der ein neues Kulturverständnis gelebt wurde."
+                <br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="27">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="27">Images</a>
+            	</div>
+
+        	<div id="popupQuellen27" class="popup-detail" style="display: none;">
+                <div><a href="PDF´s/Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf" target="_blank">Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen</a></div>	
+                <div><a href="https://hdgoe.at/arena-besetzung" target="_blank">https://hdgoe.at/arena-besetzung</a></div>    
+            </div>
+
+            <div id="popupImages27" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Döblerhofstraße 13.jpg" alt="Döblerhofstraße">
+            </div>
+
+            <div id="popupImages27-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Döblerhofstraße 13.2.jpg" alt="Döblerhofstraße">
+            </div>
+
+			
+            <div id="popupKorrektur27" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//28            
+	<img src="Grafiken/Margarethenstrasse99.png" id="bild28" class="custom-image"/>
+		<div id="popup28" class="popup" style="display: none;">
+            	<strong>Margaretenstra?e 99<br>"Rotstilzchen"</strong>
+                <strong>"Solidaritaet ist eine Waffe"</strong><br> 
+                1980 <br>
+                autonomes Stadtteilzentrum<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="28">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="28">Images</a>
+            	</div>
+
+        	<div id="popupQuellen28" class="popup-detail" style="display: none;">
+                <div><a href="PDF´s/Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen.pdf" target="_blank">Zilic Ankica - 2012 - Hausbesetzungen in Wien und alternatives Wohnen</a></div>	
+                <div><a href="https://www.diepresse.com/747946/kampf-um-freiraeume-in-wien" target="_blank">https://www.diepresse.com/747946/kampf-um-freiraeume-in-wien</a></div>    
+            </div>
+
+            <div id="popupImages28" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Margarethenstraße 99.jpg" alt="Margaretenstraße">
+            </div>
+			
+            <div id="popupKorrektur28" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//29
+<img src="Grafiken/altesAKH.png" id="bild29" class="custom-image"/>
+		<div id="popup29" class="popup" style="display: none;">
+            		<strong>Spitalgasse 2<br>altes Akh</strong>
+            		<strong>"In Raeumen traeumen statt Traeume raeumen"</strong> <br>
+					Forderung nach mehr "Freiraum"<br>
+					<br>
+				Besetzt 2004, genauere Daten nicht bekannt. <br>
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="29">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="29">Images</a>
+            	</div>
+
+        	<div id="popupQuellen29" class="popup-detail" style="display: none;">
+            	<div><a href="https://www.anarchismus.at/bilder-hausbesetzungen/hausbesetzungen-oesterreich/10-hausbesetzungen-oesterreich/detail/487-hausbesetzung-altes-akh-wien-2004" target="_blank">https://www.anarchismus.at/bilder-hausbesetzungen/hausbesetzungen-oesterreich/10-hausbesetzungen-oesterreich/detail/487-hausbesetzung-altes-akh-wien-2004</a></div>
+                </div>
+
+            <div id="popupImages29" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/wien spitalgasse 11 2008 4.jpg" alt="Spitalgasse 11">
+            </div>
+
+            <div id="popupKorrektur29" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//30
+<img src="Grafiken/leer.png" id="bild30" class="custom-image"/>
+		<div id="popup30" class="popup" style="display: none;">
+            		<strong>Judenplatz 1&2</strong>
+            		<strong>"Forderung nach Jugendzentrum"</strong> <br>
+					fehlgeschlagene Besetzung im Rahmen der "Burggarteninitiative"<br>
+				Besetzt am 1.3.1981, <br>
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="30">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="30">Images</a>
+            	</div>
+
+        	<div id="popupQuellen30" class="popup-detail" style="display: none;">
+            	<div><a href="https://linkswende.org/besetzung-der-gassergasse-und-der-aegidigasse/" target="_blank">https://linkswende.org/besetzung-der-gassergasse-und-der-aegidigasse/</a></div>
+                <div><a href="https://stadtfilm-wien.at/film/111/" target="_blank">https://stadtfilm-wien.at/film/111/</a></div>
+            </div>
+
+            <div id="popupImages30" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Judenplatz 1&2.png" alt="Judenplatz 1&2">
+            </div>
+
+            <div id="popupKorrektur30" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//31
+<img src="Grafiken/leer.png" id="bild31" class="custom-image"/>
+		<div id="popup31" class="popup" style="display: none;">
+            		<strong>Gassergasse 19<br>"GaGa"</strong>
+            		<strong>"autonomes Kultur- und Kommunikationszentrum"</strong> <br>
+					<br> von der Gemeinde nach Protesten "zur Verfügung gestellt" 
+				eröffnet am 1.3.1981 <br>
+       			<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="31">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="31">Images</a>
+            	</div>
+
+        	<div id="popupQuellen31" class="popup-detail" style="display: none;">
+            	<div><a href="https://linkswende.org/besetzung-der-gassergasse-und-der-aegidigasse/" target="_blank">https://linkswende.org/besetzung-der-gassergasse-und-der-aegidigasse/</a></div>
+                <div><a href="https://besetzungsarchiv.org/projekt/gaga" target="_blank">https://besetzungsarchiv.org/projekt/gaga</a></div>
+                <div><a href="https://www.diepresse.com/747946/kampf-um-freiraeume-in-wien" target="_blank">https://www.diepresse.com/747946/kampf-um-freiraeume-in-wien</a></div>
+            </div>
+
+            <div id="popupImages31" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Gassergasse.jpg" alt="Judenplatz 1&2">
+            </div>
+
+            <div id="popupImages31-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Gassergasse.2.png" alt="Judenplatz 1&2">
+            </div>
+
+            <div id="popupKorrektur31" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//32
+<img src="Grafiken/leer.png" id="bild32" class="custom-image"/>
+		<div id="popup32" class="popup" style="display: none;">
+            		<strong>Aegidigasse 13 & Spalowskygasse 3</strong>
+            		<strong>"autonomes Jugendhaus"</strong>
+					<br> besetzt nach der Räumung/Schleifung des Kulturzentrums Gassergasse<br> 
+                    1982 - 1988 <br> 
+                    bis dahin einzigartiger Gewalt seitens der Exekutive bei der Räumung. daher auch der Name "Watschengasse" bekannt<br>
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="32">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="32">Images</a>
+            	</div>
+
+        	<div id="popupQuellen32" class="popup-detail" style="display: none;">
+            	<div><a href="https://linkswende.org/besetzung-der-gassergasse-und-der-aegidigasse/" target="_blank">https://linkswende.org/besetzung-der-gassergasse-und-der-aegidigasse/</a></div>
+                <div><a href="https://www.derstandard.at/story/2000003631338/die-raeumung-vonaegidigasse-und-spalovskygasse-im-jahr-1988" target="_blank">https://www.derstandard.at/story/2000003631338/die-raeumung-vonaegidigasse-und-spalovskygasse-im-jahr-1988</a></div>
+                <div><a href="https://www.diepresse.com/747946/kampf-um-freiraeume-in-wien" target="_blank">https://www.diepresse.com/747946/kampf-um-freiraeume-in-wien</a></div>
+                <div><a href="https://besetzungsarchiv.org/projekt/aegidi-spalo" target="_blank">https://besetzungsarchiv.org/projekt/aegidi-spalo</a></div>
+            </div>
+
+            <div id="popupImages32" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/aedigasse13.3.jpg" alt="Aedigasse13">
+            </div>
+
+            <div id="popupImages32-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/aedigasse13.2.jpg" alt="Aedigasse13">
+            </div>
+
+            <div id="popupImages32-3" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/aedigasse13.jpg" alt="Aedigasse13">
+            </div>
+
+            <div id="popupKorrektur32" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//33
+<img src="Grafiken/stMarx.png" id="bild33" class="custom-image"/>
+		<div id="popup33" class="popup" style="display: none;">
+            		<strong>Maria-Jacobi-Gasse "St.Marx"</strong>
+            		<strong>"besetzte Baugrube/Freiflaeche"</strong>
+					<br>"Auf der Freifläche St. Marx hatte Wien zehn Jahre lang ein Labor für Urbanismus: auf der rund 45.000 Quadratmeter großen Stadtbrache hatten dort verschiedene Vereine selbstverwaltet diverse Kulturprojekte betrieben: Darunter ein selbstgebauter, -verwalteter und -finanzierter Skatepark und Gemeinschaftsgärten. Außerdem wurde die Fläche von einer Vielzahl von Kulturinitiativen bespielt und von Bewohnerinnen des Bezirks genutzt. Es fanden Konzerte, Flohmärkte und Kino-Abende statt, es gab einen Basketballplatz, Tischtennis und vieles mehr." standard.at<br> 
+                    ca.2016 - now (Räumung durch die Polizei hat am 9.04.26 begonnen) <br> 
+                 
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="33">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="33">Images</a>
+            	</div>
+
+        	<div id="popupQuellen33" class="popup-detail" style="display: none;">
+
+            	<div><a href="https://stmarx.wien/" target="_blank" > https://stmarx.wien/</a></div>
+		<div><a href="https://stmarx.at/archiv/" target="_blank" > https://stmarx.at/archiv/</a></div>
+		<div><a href="https://www.meinbezirk.at/landstrasse/c-lokales/gelaende-in-st-marx-bei-grosseinsatz-von-polizei-geraeumt_a8576014" target="_blank" > https://www.meinbezirk.at/landstrasse/c-lokales/gelaende-in-st-marx-bei-grosseinsatz-von-polizei-geraeumt_a8576014</a></div>
+		<div><a href="https://www.derstandard.at/story/3000000316239/umstrittene-event-arena-buergerinitiative-will-nach-raeumung-weiterkaempfen" target="_blank" > https://www.derstandard.at/story/3000000316239/umstrittene-event-arena-buergerinitiative-will-nach-raeumung-weiterkaempfen</a></div>
+		
+                
+            </div>
+
+            <div id="popupImages33" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/stmarx.jpg" alt="stmarx">
+            </div>
+
+            <div id="popupImages33-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/stmarx.2.jpg" alt="stmarx">
+            </div>
+
+            <div id="popupImages33-3" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/stmarx.4.jpg" alt="stmarx">
+            </div>
+
+	    <div id="popupImages33-4" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/stmarx.4.jpg" alt="stmarx">
+            </div>
+
+            <div id="popupKorrektur33" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+//34
+<img src="Grafiken/Schillerplatz3.png" id="bild34" class="custom-image"/>
+		<div id="popup34" class="popup" style="display: none;">
+            		<strong>Schillerplatz 3 "Akademie der besetzten Künste"</strong>
+            		<strong>"Besetzung der Aula der Akademie der bildenden Künste"</strong>
+					<br>"We demand that the Government stops all allocation of funds intended for education being channeled into militarization. We fight for our education and for the rights of all oppressed people. No war but class war."<br> 
+                    October 2026 - now (ongoing) <br> 
+                 
+				<br>
+			<a href="javascript:void(0);" class="korrekturLink">Correction</a> |
+            		<a href="javascript:void(0);" class="quellenLink" data-id="34">Sources</a> |
+            		<a href="javascript:void(0);" class="imagesLink" data-id="34">Images</a>
+            	</div>
+
+        	<div id="popupQuellen34" class="popup-detail" style="display: none;">
+
+            	<div><a href="https://www.instagram.com/p/Dew7155EUrm/?hl=de&img_index=1" target="_blank" > https://www.instagram.com/p/Dew7155EUrm/?hl=de&img_index=1</a></div>
+		<div><a href="https://www.vienna.at/budgetstreit-besetzung-an-wiener-kunstuniversitaet/10551137" target="_blank" > https://www.vienna.at/budgetstreit-besetzung-an-wiener-kunstuniversitaet/10551137</a></div>
+		
+                
+            </div>
+
+            <div id="popupImages34" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Schillerplatz3.jpg" alt="Schillerplatz3">
+            </div>
+            <div id="popupImages34-2" class="popup-images" style="display: none;">
+                <img src="Banner.Fotos/Schillerplatz3.2.png" alt="Schillerplatz3">
+            </div>
+
+            <div id="popupKorrektur34" class="korrektur-popup" style="display: none;">
+                <form class="korrektur-form">
+                    <strong>Suggest a Correction:</strong>
+                    <textarea placeholder="type here"></textarea>
+                    <button type="submit">submit</button>
+                </form>
+</div>
+
+
+</div>
+
+<div class="text-unten-links">M 1:20000 @swzpln.de/Vienna - contributors: openstreetmap.org </div>
+
+<script src="script.js"></script>
+
+
+
+</body>
+
+</html>
