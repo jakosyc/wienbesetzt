@@ -389,7 +389,7 @@ body::-webkit-scrollbar {
     width: auto;
 }
 .popup-images img {
-    width: 300px;
+    width: 500px;
     height: auto;
     margin: 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
