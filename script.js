@@ -4,32 +4,90 @@ window.addEventListener('load', function () {
 
     entranceBarrier.addEventListener('click', function() {
         entranceBarrier.classList.add('hidden');
-        // Remove the barrier from DOM after animation completes
-        setTimeout(() => {
-            entranceBarrier.remove();
-        }, 500);
+        setTimeout(() => entranceBarrier.remove(), 500);
     });
 
     const container = document.getElementById('container');
-    const svgWrapper = document.getElementById('svgWrapper');
     const svgObject = document.getElementById('svgObject');
-    const infoButton = document.getElementById('circle2');
     const infoPopup = document.getElementById('info-popup');
-    const contactButton = document.getElementById('circle');
     const contactPopup = document.getElementById('contact-popup');
     const imagesListButton = document.getElementById('circle4');
     const imagesListPopup = document.getElementById('images-list-popup');
 
-    // Initialize SVG position to center
     let translateX = -(container.offsetWidth / 2);
     let translateY = -(container.offsetHeight / 2);
     let scale = 1;
-
-    // Apply initial transform
     svgObject.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
 
     function updateSvgTransform() {
         svgObject.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    // St. Marx-only additional popup, with styling in a stylesheet-style block.
+    const stMarxMainPopup = document.getElementById('popup33');
+    if (stMarxMainPopup) {
+        const stMarxStyles = document.createElement('style');
+        stMarxStyles.textContent = `
+            #popup33 .stmarx-more-button{display:block;margin-top:8px;padding:8px 12px;color:#fff;background:#245b8f;border:1px solid #163b5c;border-radius:6px;font:bold 13px Arial,sans-serif;cursor:pointer;transition:background-color .2s ease,transform .2s ease}
+            #popup33 .stmarx-more-button:hover{background:#347bb5;transform:scale(1.03)}
+            #popup33 .stmarx-extra-popup{position:absolute;left:0;top:calc(100% + 10px);display:none;box-sizing:border-box;width:420px;max-width:80vw;max-height:70vh;overflow:auto;padding:16px;color:#222;background:#fff;border:2px solid #333;border-radius:8px;font:14px/1.5 Arial,sans-serif;z-index:40}
+            #popup33 .stmarx-extra-popup strong{display:block;margin:0 0 8px;font:bold 18px Arial,sans-serif;letter-spacing:normal}
+            #popup33 .stmarx-extra-popup p{margin:0 0 12px;font:14px/1.5 Arial,sans-serif}
+            #popup33 .stmarx-extra-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+            #popup33 .stmarx-extra-images img{display:block;width:100%;height:auto;object-fit:cover}
+            #popup33 .stmarx-extra-popup .stmarx-close-button{display:block;margin-top:10px;padding:7px 12px;color:#fff;background:#222;border:0;border-radius:4px;cursor:pointer;font:13px Arial,sans-serif}
+            #popup33 .stmarx-extra-popup .stmarx-close-button:hover{background:#444}
+        `;
+        document.head.appendChild(stMarxStyles);
+
+        const stMarxButton = document.createElement('button');
+        stMarxButton.type = 'button';
+        stMarxButton.className = 'stmarx-more-button';
+        stMarxButton.textContent = 'More about St. Marx';
+        stMarxButton.setAttribute('aria-expanded', 'false');
+        stMarxMainPopup.appendChild(stMarxButton);
+
+        const stMarxExtraPopup = document.createElement('div');
+        stMarxExtraPopup.id = 'stMarxExtraPopup';
+        stMarxExtraPopup.className = 'stmarx-extra-popup';
+        const stMarxTitle = document.createElement('strong');
+        stMarxTitle.textContent = 'St. Marx: culture and community space';
+        stMarxExtraPopup.appendChild(stMarxTitle);
+
+        const stMarxText = document.createElement('p');
+        stMarxText.textContent = 'For around ten years, the approximately 45,000 m² open space at St. Marx hosted self-organized cultural projects. These included a community-built skatepark and gardens, alongside concerts, flea markets, cinema evenings, sports and other neighborhood activities.';
+        stMarxExtraPopup.appendChild(stMarxText);
+
+        const stMarxImages = document.createElement('div');
+        stMarxImages.className = 'stmarx-extra-images';
+        ['Banner.Fotos/stmarx.jpg', 'Banner.Fotos/stmarx.2.jpg', 'Banner.Fotos/stmarx.4.jpg'].forEach((src, index) => {
+            const image = document.createElement('img');
+            image.src = src;
+            image.alt = `St. Marx site photo ${index + 1}`;
+            stMarxImages.appendChild(image);
+        });
+        stMarxExtraPopup.appendChild(stMarxImages);
+
+        const stMarxCloseButton = document.createElement('button');
+        stMarxCloseButton.type = 'button';
+        stMarxCloseButton.className = 'stmarx-close-button';
+        stMarxCloseButton.textContent = 'Close';
+        stMarxExtraPopup.appendChild(stMarxCloseButton);
+        stMarxMainPopup.appendChild(stMarxExtraPopup);
+
+        stMarxButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const open = stMarxExtraPopup.style.display === 'block';
+            stMarxExtraPopup.style.display = open ? 'none' : 'block';
+            stMarxButton.setAttribute('aria-expanded', String(!open));
+        });
+        stMarxCloseButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            stMarxExtraPopup.style.display = 'none';
+            stMarxButton.setAttribute('aria-expanded', 'false');
+        });
     }
 
     // Handle image clicks
@@ -38,47 +96,29 @@ window.addEventListener('load', function () {
             e.stopPropagation();
             const imageId = img.id.replace('bild', '');
             const popup = document.getElementById(`popup${imageId}`);
-
-            // Toggle image enlargement
             const wasEnlarged = img.classList.contains('enlarged');
-
-            // Close all popups first
             closeAllPopups();
-
             if (!wasEnlarged) {
-                // Enlarge image
                 img.classList.add('enlarged');
-
-                // Wait for the image enlargement animation to complete
                 setTimeout(() => {
-                    // Show and position popup next to the enlarged image
                     const imgRect = img.getBoundingClientRect();
                     const containerRect = container.getBoundingClientRect();
-
-                    // Calculate position relative to the container
                     const relativeTop = imgRect.top - containerRect.top;
                     const relativeLeft = imgRect.left - containerRect.left;
-
-                    // Calculate the width of the enlarged image (initial width * scale)
-                    const initialWidth = 20; // This matches our CSS width
-                    const scaleFactor = 10;  // This matches our CSS scale
-                    const enlargedWidth = initialWidth * scaleFactor;
-
-                    // Position popup right next to the enlarged image
+                    const enlargedWidth = 20 * 10;
                     popup.style.top = `${relativeTop}px`;
-                    popup.style.left = `${relativeLeft + enlargedWidth + 20}px`; // 20px gap
+                    popup.style.left = `${relativeLeft + enlargedWidth + 20}px`;
                     popup.style.display = 'block';
-                }, 800); // Wait for 800ms (matching the CSS transition duration)
+                }, 800);
             }
         });
     });
 
-    // Handle source links
+    // Handle source and image links
     document.querySelectorAll('.quellenLink, .imagesLink').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-
             const imageId = this.getAttribute('data-id');
             const originalImage = document.getElementById(`bild${imageId}`);
             const mainPopup = document.getElementById(`popup${imageId}`);
@@ -86,221 +126,98 @@ window.addEventListener('load', function () {
             const imagesPopup = document.getElementById(`popupImages${imageId}`);
             const secondImagesPopup = document.getElementById(`popupImages${imageId}-2`);
             const korrekturPopup = document.getElementById(`popupKorrektur${imageId}`);
+            const targetPopup = this.classList.contains('quellenLink') ? sourcesPopup : imagesPopup;
 
-            // Determine which popup to show based on the clicked link's class
-            let targetPopup = this.classList.contains('quellenLink') ? sourcesPopup : imagesPopup;
-
-            // For images popup, position to the left of the original image
             if (this.classList.contains('imagesLink')) {
                 const imgRect = originalImage.getBoundingClientRect();
                 const containerRect = container.getBoundingClientRect();
-                const targetPopupWidth = 300; // Width of the image in popup-images
-                const gap = 20; // Gap between popups
-
-                // Calculate base position relative to the container and the original image
+                const targetPopupWidth = 300;
+                const gap = 20;
                 const relativeTop = imgRect.top - containerRect.top;
                 const relativeLeft = imgRect.left - containerRect.left;
-
-                // Check if there's already an image popup for this location
                 const isFirstImageVisible = imagesPopup.style.display === 'block';
-
                 if (!isFirstImageVisible) {
-                    // Show first image
                     imagesPopup.style.left = `${relativeLeft - targetPopupWidth - gap}px`;
                     imagesPopup.style.top = `${relativeTop}px`;
                     imagesPopup.style.display = 'block';
                     imagesPopup.style.zIndex = '30';
-
-                    // Add click event listener to close when clicked
                     const img = imagesPopup.querySelector('img');
                     const newImg = img.cloneNode(true);
-                    newImg.addEventListener('click', function(event) {
-                        event.stopPropagation();
-                        imagesPopup.style.display = 'none';
-                    });
+                    newImg.addEventListener('click', event => { event.stopPropagation(); imagesPopup.style.display = 'none'; });
                     img.parentNode.replaceChild(newImg, img);
-
                 } else {
                     const isSecondImageVisible = secondImagesPopup.style.display === 'block';
                     const thirdImagesPopup = document.getElementById(`popupImages${imageId}-3`);
-
-                    if (!isSecondImageVisible) {
-                        // Show second image
-                        const offset = 20; // Offset for overlapping effect
+                    if (!isSecondImageVisible && secondImagesPopup) {
+                        const offset = 20;
                         secondImagesPopup.style.left = `${relativeLeft - targetPopupWidth - gap - offset}px`;
                         secondImagesPopup.style.top = `${relativeTop + offset}px`;
                         secondImagesPopup.style.display = 'block';
                         secondImagesPopup.style.zIndex = '31';
-
-                        // Add click event listener to close when clicked
                         const img = secondImagesPopup.querySelector('img');
-                        const newImg = img.cloneNode(true);
-                        newImg.addEventListener('click', function(event) {
-                            event.stopPropagation();
-                            secondImagesPopup.style.display = 'none';
-                        });
-                        img.parentNode.replaceChild(newImg, img);
+                        if (img) {
+                            const newImg = img.cloneNode(true);
+                            newImg.addEventListener('click', event => { event.stopPropagation(); secondImagesPopup.style.display = 'none'; });
+                            img.parentNode.replaceChild(newImg, img);
+                        }
                     } else if (thirdImagesPopup) {
-                        // Show third image
-                        const offset = 40; // Larger offset for third image
+                        const offset = 40;
                         thirdImagesPopup.style.left = `${relativeLeft - targetPopupWidth - gap - offset}px`;
                         thirdImagesPopup.style.top = `${relativeTop + offset}px`;
                         thirdImagesPopup.style.display = 'block';
                         thirdImagesPopup.style.zIndex = '32';
-
-                        // Add click event listener to close when clicked
                         const img = thirdImagesPopup.querySelector('img');
-                        const newImg = img.cloneNode(true);
-                        newImg.addEventListener('click', function(event) {
-                            event.stopPropagation();
-                            thirdImagesPopup.style.display = 'none';
-                        });
-                        img.parentNode.replaceChild(newImg, img);
+                        if (img) {
+                            const newImg = img.cloneNode(true);
+                            newImg.addEventListener('click', event => { event.stopPropagation(); thirdImagesPopup.style.display = 'none'; });
+                            img.parentNode.replaceChild(newImg, img);
+                        }
                     }
                 }
             } else {
-                // Original sources popup behavior
                 let referencePopup = mainPopup;
-                if (korrekturPopup.style.display === 'block') {
-                    referencePopup = korrekturPopup;
-                }
-
+                if (korrekturPopup && korrekturPopup.style.display === 'block') referencePopup = korrekturPopup;
                 const referenceRect = referencePopup.getBoundingClientRect();
                 const containerRect = container.getBoundingClientRect();
-
-                // Position directly under the reference popup
-                const relativeLeft = referenceRect.left - containerRect.left;
-                const relativeTop = referenceRect.top - containerRect.top + referenceRect.height + 10;
-
-                targetPopup.style.left = `${relativeLeft}px`;
-                targetPopup.style.top = `${relativeTop}px`;
-                targetPopup.style.zIndex = '20'; // Ensure it appears above the main popup
-
+                targetPopup.style.left = `${referenceRect.left - containerRect.left}px`;
+                targetPopup.style.top = `${referenceRect.top - containerRect.top + referenceRect.height + 10}px`;
+                targetPopup.style.zIndex = '20';
                 targetPopup.style.display = targetPopup.style.display === 'none' || !targetPopup.style.display ? 'block' : 'none';
             }
         });
     });
 
-    // Handle Korrektur links
+    // Handle correction links
     document.querySelectorAll('.korrekturLink').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-
             const imageId = this.closest('.popup').id.replace('popup', '');
             const mainPopup = document.getElementById(`popup${imageId}`);
             const sourcesPopup = document.getElementById(`popupQuellen${imageId}`);
             const korrekturPopup = document.getElementById(`popupKorrektur${imageId}`);
-
-            // Toggle the Korrektur popup
-            if (korrekturPopup.style.display === 'block') {
-                korrekturPopup.style.display = 'none';
-                return;
-            }
-
-            // Get the position of the main popup or sources popup
-            let referencePopup = mainPopup;
-            if (sourcesPopup.style.display === 'block') {
-                referencePopup = sourcesPopup;
-            }
-
+            if (korrekturPopup.style.display === 'block') { korrekturPopup.style.display = 'none'; return; }
+            const referencePopup = sourcesPopup && sourcesPopup.style.display === 'block' ? sourcesPopup : mainPopup;
             const referenceRect = referencePopup.getBoundingClientRect();
             const containerRect = container.getBoundingClientRect();
-
-            // Position directly under the reference popup
-            const relativeLeft = referenceRect.left - containerRect.left;
-            const relativeTop = referenceRect.top - containerRect.top + referenceRect.height + 10;
-
-            // Position Korrektur popup under the reference popup
-            korrekturPopup.style.left = `${relativeLeft}px`;
-            korrekturPopup.style.top = `${relativeTop}px`;
-            korrekturPopup.style.zIndex = '20'; // Match the z-index of sources popup
-
-            // Show the Korrektur popup
+            korrekturPopup.style.left = `${referenceRect.left - containerRect.left}px`;
+            korrekturPopup.style.top = `${referenceRect.top - containerRect.top + referenceRect.height + 10}px`;
+            korrekturPopup.style.zIndex = '20';
             korrekturPopup.style.display = 'block';
         });
     });
 
-    // Handle Korrektur form submissions
+    // Handle correction form submissions
     document.querySelectorAll('.korrektur-form').forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const imageId = this.closest('.korrektur-popup').id.replace('popupKorrektur', '');
             const textarea = this.querySelector('textarea');
-            const mailtoLink = `mailto:jakobsycha@gmail.com?subject=Korrektur für Standort ${imageId}&body=${encodeURIComponent(textarea.value)}`;
-            window.location.href = mailtoLink;
-            // Clear and hide the popup after sending
+            window.location.href = `mailto:jakobsycha@gmail.com?subject=Korrektur für Standort ${imageId}&body=${encodeURIComponent(textarea.value)}`;
             textarea.value = '';
             this.closest('.korrektur-popup').style.display = 'none';
         });
     });
-
-    // Add a St. Marx-only button and an additional text-and-images popup
-    const stMarxMainPopup = document.getElementById('popup33');
-    if (stMarxMainPopup) {
-        const stMarxButton = document.createElement('button');
-        stMarxButton.type = 'button';
-        stMarxButton.textContent = 'More about St. Marx';
-        stMarxButton.setAttribute('aria-expanded', 'false');
-        stMarxButton.style.cssText = 'display:block;margin-top:8px;padding:6px 10px;background:#000;color:#fff;border:0;cursor:pointer;font:12px Arial,sans-serif;';
-        stMarxMainPopup.appendChild(stMarxButton);
-
-        const stMarxExtraPopup = document.createElement('div');
-        stMarxExtraPopup.id = 'stMarxExtraPopup';
-        stMarxExtraPopup.className = 'stmarx-extra-popup';
-        stMarxExtraPopup.style.cssText = 'position:absolute;display:none;width:420px;max-width:80vw;max-height:70vh;overflow:auto;box-sizing:border-box;padding:14px;background:#fff;border:2px solid #333;font:13px/1.5 Arial,sans-serif;z-index:40;';
-
-        const stMarxTitle = document.createElement('strong');
-        stMarxTitle.textContent = 'St. Marx: culture and community space';
-        stMarxTitle.style.cssText = 'display:block;margin-bottom:8px;font-size:16px;';
-        stMarxExtraPopup.appendChild(stMarxTitle);
-
-        const stMarxText = document.createElement('p');
-        stMarxText.textContent = 'For around ten years, the approximately 45,000 m² open space at St. Marx hosted self-organized cultural projects. These included a community-built skatepark and gardens, alongside concerts, flea markets, cinema evenings, sports and other neighborhood activities.';
-        stMarxExtraPopup.appendChild(stMarxText);
-
-        const stMarxImages = document.createElement('div');
-        stMarxImages.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;';
-        ['Banner.Fotos/stmarx.jpg', 'Banner.Fotos/stmarx.2.jpg', 'Banner.Fotos/stmarx.4.jpg'].forEach((src, index) => {
-            const image = document.createElement('img');
-            image.src = src;
-            image.alt = `St. Marx site photo ${index + 1}`;
-            image.style.cssText = 'display:block;width:100%;height:auto;';
-            stMarxImages.appendChild(image);
-        });
-        stMarxExtraPopup.appendChild(stMarxImages);
-
-        const closeStMarxPopup = document.createElement('button');
-        closeStMarxPopup.type = 'button';
-        closeStMarxPopup.textContent = 'Close';
-        closeStMarxPopup.style.cssText = 'display:block;margin-top:10px;padding:6px 10px;background:#000;color:#fff;border:0;cursor:pointer;';
-        stMarxExtraPopup.appendChild(closeStMarxPopup);
-        container.appendChild(stMarxExtraPopup);
-
-        stMarxButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            const isOpen = stMarxExtraPopup.style.display === 'block';
-            if (isOpen) {
-                stMarxExtraPopup.style.display = 'none';
-                stMarxButton.setAttribute('aria-expanded', 'false');
-                return;
-            }
-
-            const popupRect = stMarxMainPopup.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            stMarxExtraPopup.style.left = `${popupRect.left - containerRect.left}px`;
-            stMarxExtraPopup.style.top = `${popupRect.bottom - containerRect.top + 10}px`;
-            stMarxExtraPopup.style.display = 'block';
-            stMarxButton.setAttribute('aria-expanded', 'true');
-        });
-
-        closeStMarxPopup.addEventListener('click', function(event) {
-            event.stopPropagation();
-            stMarxExtraPopup.style.display = 'none';
-            stMarxButton.setAttribute('aria-expanded', 'false');
-        });
-    }
 
     // Images List button click handler
     imagesListButton.addEventListener('click', function() {
@@ -310,161 +227,73 @@ window.addEventListener('load', function () {
     // Handle clicks on location list items
     document.querySelectorAll('.clickable-location').forEach(item => {
         item.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent the click from closing the list popup
+            e.stopPropagation();
             const imageId = this.getAttribute('data-image-id');
             const targetImage = document.getElementById(`bild${imageId}`);
             const popup = document.getElementById(`popup${imageId}`);
-
-            // Close any previously enlarged images and their popups
-            document.querySelectorAll('.custom-image').forEach(img => {
-                if (img !== targetImage) {
-                    img.classList.remove('enlarged');
-                }
-            });
-            document.querySelectorAll('.popup').forEach(p => {
-                if (p !== popup) {
-                    p.style.display = 'none';
-                }
-            });
-
-            // Check if image is already enlarged
+            document.querySelectorAll('.custom-image').forEach(img => { if (img !== targetImage) img.classList.remove('enlarged'); });
+            document.querySelectorAll('.popup').forEach(p => { if (p !== popup) p.style.display = 'none'; });
             const wasEnlarged = targetImage.classList.contains('enlarged');
-
             if (!wasEnlarged) {
-                // Enlarge image
                 targetImage.classList.add('enlarged');
-
-                // Wait for the image enlargement animation to complete
                 setTimeout(() => {
-                    // Show and position popup next to the enlarged image
                     const imgRect = targetImage.getBoundingClientRect();
                     const containerRect = container.getBoundingClientRect();
-
-                    // Calculate position relative to the container
                     const relativeTop = imgRect.top - containerRect.top;
                     const relativeLeft = imgRect.left - containerRect.left;
-
-                    // Calculate the width of the enlarged image
-                    const initialWidth = 20; // Initial width from CSS
-                    const scaleFactor = 10;  // Scale factor from CSS
-                    const enlargedWidth = initialWidth * scaleFactor;
-
-                    // Position popup right next to the enlarged image
                     popup.style.top = `${relativeTop}px`;
-                    popup.style.left = `${relativeLeft + enlargedWidth + 20}px`; // 20px gap
+                    popup.style.left = `${relativeLeft + 20 * 10 + 20}px`;
                     popup.style.display = 'block';
-                }, 800); // Wait for 800ms (matching the CSS transition duration)
+                }, 800);
             }
         });
     });
 
-    // Close popups when clicking outside
+    // Close map popups when clicking outside them
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.custom-image') &&
-            !e.target.closest('.popup') &&
-            !e.target.closest('.popup-detail') &&
-            !e.target.closest('.popup-images') &&
-            !e.target.closest('.korrektur-popup') &&
-            !e.target.closest('.stmarx-extra-popup')) {
-            closeAllPopups();
-        }
-        if (!e.target.closest('#circle2') && !e.target.closest('#info-popup')) {
-            infoPopup.style.display = 'none';
-        }
-        if (!e.target.closest('#circle') && !e.target.closest('#contact-popup')) {
-            contactPopup.style.display = 'none';
-        }
-        if (!e.target.closest('#circle4') && !e.target.closest('#images-list-popup')) {
-            imagesListPopup.style.display = 'none';
-        }
+        if (!e.target.closest('.custom-image') && !e.target.closest('.popup') && !e.target.closest('.popup-detail') && !e.target.closest('.popup-images') && !e.target.closest('.korrektur-popup')) closeAllPopups();
+        if (!e.target.closest('#circle2') && !e.target.closest('#info-popup')) infoPopup.style.display = 'none';
+        if (!e.target.closest('#circle') && !e.target.closest('#contact-popup')) contactPopup.style.display = 'none';
+        if (!e.target.closest('#circle4') && !e.target.closest('#images-list-popup')) imagesListPopup.style.display = 'none';
     });
 
     function closeAllPopups() {
-        // Reset all images
-        document.querySelectorAll('.custom-image').forEach(img => {
-            img.classList.remove('enlarged');
-        });
-
-        // Hide all popups including second image popups
-        document.querySelectorAll('.popup, .popup-detail, .popup-images, .korrektur-popup, .stmarx-extra-popup').forEach(popup => {
-            popup.style.display = 'none';
-        });
-        const stMarxButton = document.querySelector('#popup33 button');
-        if (stMarxButton) stMarxButton.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.custom-image').forEach(img => img.classList.remove('enlarged'));
+        document.querySelectorAll('.popup, .popup-detail, .popup-images, .korrektur-popup').forEach(popup => popup.style.display = 'none');
+        const extraPopup = document.getElementById('stMarxExtraPopup');
+        if (extraPopup) extraPopup.style.display = 'none';
+        const moreButton = document.querySelector('#popup33 .stmarx-more-button');
+        if (moreButton) moreButton.setAttribute('aria-expanded', 'false');
     }
 
     document.getElementById('circle2').addEventListener('click', function(e) {
         e.stopPropagation();
-        var infoPopup = document.getElementById('info-popup');
-        var helpPopup = document.getElementById('help-popup');
-        var contactPopup = document.getElementById('contact-popup');
-
-        if (infoPopup.style.display === 'block') {
-            infoPopup.style.display = 'none';
-        } else {
-            infoPopup.style.display = 'block';
-            helpPopup.style.display = 'none';
-            contactPopup.style.display = 'none';
-        }
+        const helpPopup = document.getElementById('help-popup');
+        const contactPopup = document.getElementById('contact-popup');
+        if (infoPopup.style.display === 'block') infoPopup.style.display = 'none';
+        else { infoPopup.style.display = 'block'; helpPopup.style.display = 'none'; contactPopup.style.display = 'none'; }
     });
 
     document.getElementById('circle3').addEventListener('click', function(e) {
         e.stopPropagation();
-        var infoPopup = document.getElementById('info-popup');
-        var helpPopup = document.getElementById('help-popup');
-        var contactPopup = document.getElementById('contact-popup');
-
-        if (helpPopup.style.display === 'block') {
-            helpPopup.style.display = 'none';
-        } else {
-            helpPopup.style.display = 'block';
-            infoPopup.style.display = 'none';
-            contactPopup.style.display = 'none';
-        }
+        const helpPopup = document.getElementById('help-popup');
+        if (helpPopup.style.display === 'block') helpPopup.style.display = 'none';
+        else { helpPopup.style.display = 'block'; infoPopup.style.display = 'none'; contactPopup.style.display = 'none'; }
     });
 
     document.getElementById('circle').addEventListener('click', function(e) {
         e.stopPropagation();
-        var infoPopup = document.getElementById('info-popup');
-        var helpPopup = document.getElementById('help-popup');
-        var contactPopup = document.getElementById('contact-popup');
-
-        if (contactPopup.style.display === 'block') {
-            contactPopup.style.display = 'none';
-        } else {
-            contactPopup.style.display = 'block';
-            infoPopup.style.display = 'none';
-            helpPopup.style.display = 'none';
-        }
-    });
-
-    // Add click event listeners to close popups when clicking outside
-    window.addEventListener('click', function(event) {
-        var infoPopup = document.getElementById('info-popup');
-        var helpPopup = document.getElementById('help-popup');
-        var contactPopup = document.getElementById('contact-popup');
-        var circle2 = document.getElementById('circle2');
-        var circle3 = document.getElementById('circle3');
-        var circle = document.getElementById('circle');
-
-        if (event.target !== infoPopup && event.target !== circle2 && !infoPopup.contains(event.target)) {
-            infoPopup.style.display = 'none';
-        }
-        if (event.target !== helpPopup && event.target !== circle3 && !helpPopup.contains(event.target)) {
-            helpPopup.style.display = 'none';
-        }
-        if (event.target !== contactPopup && event.target !== circle && !contactPopup.contains(event.target)) {
-            contactPopup.style.display = 'none';
-        }
+        const helpPopup = document.getElementById('help-popup');
+        if (contactPopup.style.display === 'block') contactPopup.style.display = 'none';
+        else { contactPopup.style.display = 'block'; infoPopup.style.display = 'none'; helpPopup.style.display = 'none'; }
     });
 
     // Header image scroll behavior
     const headerImage = document.getElementById('header-image');
     const bottomImage = document.getElementById('bottom-image');
-
     window.addEventListener('scroll', function() {
         const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        headerImage.style.transform = `translateX(${-scrollLeft* 0.3}px)`;
-        bottomImage.style.transform = `translateX(${-scrollLeft * 0.3}px)`;
+        if (headerImage) headerImage.style.transform = `translateX(${-scrollLeft * 0.3}px)`;
+        if (bottomImage) bottomImage.style.transform = `translateX(${-scrollLeft * 0.3}px)`;
     });
 });
