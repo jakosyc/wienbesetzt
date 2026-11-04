@@ -7,7 +7,17 @@
     <title>Wienbesetzt!</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
+	
+<script>
+window.addEventListener("load", () => {
+    const container = document.getElementById("container");
+    window.scrollTo(
+        container.offsetLeft + container.offsetWidth / 2 - window.innerWidth / 2,
+        container.offsetTop + container.offsetHeight / 2 - window.innerHeight / 2
+    );
+});
+</script>
+	
 <body>
 
     <div class="entrance-overlay" id="entranceBarrier" style="cursor: pointer;">
